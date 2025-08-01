@@ -5,20 +5,88 @@ const desc  = 'Kies een categorie, selecteer eenheden en reken direct waarden om
 ---
 
 <html lang="nl">
-  <head>
-    <meta charset="utf-8" />
-    <title>{title}</title>
-    <meta name="description" content={desc} />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body style="font-family:sans-serif;max-width:600px;margin:2rem auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={desc} />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --brand:#1e66d0;--brand-light:#f0f6ff;--text:#222;
+      --radius:16px;--shadow:0 8px 18px rgba(0,0,0,.05);
+      font-family:Inter,sans-serif;
+    }
+    body{margin:0;color:var(--text);background:#fff}
+    header{background:var(--brand);color:#fff;padding:1.6rem .5rem;text-align:center;box-shadow:var(--shadow)}
+    .wrap{max-width:800px;margin:0 auto;padding:2.4rem 1.2rem}
+    h1{margin:.2rem 0;font-size:2.1rem;font-weight:600}
+    h2{font-size:1.4rem;margin:2.8rem 0 1rem}
+    p{line-height:1.6;margin:.9rem 0}
+    .panel{background:var(--brand-light);border-radius:var(--radius);box-shadow:var(--shadow);padding:2.4rem 1.8rem}
+
+    /* advertentie */
+    .ad{background:#fafafa;border:2px dashed #ccc;border-radius:var(--radius);
+        text-align:center;color:#666;padding:3.2rem .5rem;margin:2.4rem 0;font-size:.9rem}
+
+    footer{text-align:center;font-size:.85rem;color:#666;margin:3.7rem 0 1.3rem}
+
+    /*––––  Converter styling ––––*/
+    .conv-card{display:flex;flex-direction:column;gap:2.4rem}
+
+    .conv-title{font-weight:600;font-size:1.1rem;margin-bottom:.8rem;display:block}
+
+    .conv-card select,
+    .conv-card input,
+    .conv-card output{
+      width:100%;padding:1.25rem;font-size:1.5rem;border:1px solid #ccc;
+      border-radius:var(--radius);background:#fff;box-sizing:border-box
+    }
+
+    .conv-unit-row{display:flex;gap:2rem;flex-wrap:wrap}
+    .conv-unit-row div{flex:1;min-width:170px}
+
+    .conv-io{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
+    .conv-io div{display:flex;align-items:center;gap:.8rem}
+    .conv-io input{min-width:170px}
+    .conv-io output{min-width:170px;text-align:center;font-weight:600}
+    .conv-io .equals{font-size:2.2rem;font-weight:700}
+
+    .unit{font-size:1.05rem;color:#555}
+
+    @media(max-width:540px){
+      h1{font-size:1.75rem}
+      .conv-unit-row{gap:1rem}
+      .conv-io{gap:1rem}
+      .conv-io .equals{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
     <h1>{title}</h1>
-    <p>{desc}</p>
+    <p style="margin:0 .7rem 0">{desc}</p>
+  </header>
 
-    <Converter client:load />
+  <main class="wrap">
+    <div class="ad">[ advertentie-ruimte 728×90 / automatisch ]</div>
 
-    <p style="margin-top:1rem">
-      Deze homepage werkt; SEO-subpagina’s bouwen we in de volgende stap.
-    </p>
-  </body>
+    <section class="panel">
+      <Converter client:load />
+    </section>
+
+    <h2>Populaire omzettingen</h2>
+    <ul style="margin:0;padding-left:1.2rem">
+      <li><a href="/km-naar-mm/">Kilometer ➜ millimeter</a></li>
+      <li><a href="/mm-naar-cm/">Millimeter ➜ centimeter</a></li>
+      <li><a href="/c-naar-f/">°C ➜ °F</a></li>
+    </ul>
+
+    <div class="ad">[ advertentie-ruimte 300×250 ]</div>
+  </main>
+
+  <footer>© {new Date().getFullYear()} van-naar.nl — Alle rechten voorbehouden</footer>
+</body>
 </html>
