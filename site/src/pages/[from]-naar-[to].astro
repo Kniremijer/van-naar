@@ -1,0 +1,46 @@
+---
+import Converter from '../components/Converter.tsx';
+import { units } from '../data/units';
+import type { Unit } from '../data/units';
+
+/* URL-params */
+const { from, to } = Astro.params as { from: Unit; to: Unit };
+
+/* vind bijpassende categorie */
+let category = 'lengte';
+for (const [cat, list] of Object.entries(units)) {
+  if (list.includes(from) && list.includes(to)) { category = cat; break; }
+}
+
+/* SEO */
+const title = `Omrekenen van ${from} naar ${to}`;
+const desc  = `Reken ${from} om naar ${to}. Vul een waarde in en zie direct het resultaat.`;
+
+/* alle paden */
+export function getStaticPaths() {
+  const paths = [];
+  for (const list of Object.values(units)) {
+    for (const f of list)
+      for (const t of list)
+        if (f !== t) paths.push({ params: { from: f, to: t } });
+  }
+  return paths;
+}
+---
+
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <meta name="description" content={desc} />
+  </head>
+  <body style="font-family:sans-serif;max-width:600px;margin:2rem auto">
+    <h1>{title}</h1>
+    <p>{desc}</p>
+
+    <!-- Converter start meteen met juiste eenheden -->
+    <Converter defaultCategory={category} initialFrom={from} initialTo={to} client:load />
+
+    <p style="margin-top:1rem"><a href="/">Terug naar de startpagina</a></p>
+  </body>
+</html>
