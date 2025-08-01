@@ -10,83 +10,94 @@ const desc  = 'Kies een categorie, selecteer eenheden en reken direct waarden om
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={desc} />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --brand:#1e66d0;--brand-light:#f0f6ff;--text:#222;
-      --radius:16px;--shadow:0 8px 18px rgba(0,0,0,.05);
-      font-family:Inter,sans-serif;
+      --blue:#2563EB;--blue-dk:#1E3A8A;
+      --gray-light:#F3F4F6;--gray:#6B7280;--black:#111827;
+      --radius:16px;--shadow:0 8px 18px rgba(0,0,0,.06)
     }
-    body{margin:0;color:var(--text);background:#fff}
-    header{background:var(--brand);color:#fff;padding:1.6rem .5rem;text-align:center;box-shadow:var(--shadow)}
-    .wrap{max-width:800px;margin:0 auto;padding:2.4rem 1.2rem}
-    h1{margin:.2rem 0;font-size:2.1rem;font-weight:600}
-    h2{font-size:1.4rem;margin:2.8rem 0 1rem}
-    p{line-height:1.6;margin:.9rem 0}
-    .panel{background:var(--brand-light);border-radius:var(--radius);box-shadow:var(--shadow);padding:2.4rem 1.8rem}
+    body{margin:0;font-family:Inter,sans-serif;color:var(--black);background:#fff}
 
-    /* advertentie */
-    .ad{background:#fafafa;border:2px dashed #ccc;border-radius:var(--radius);
-        text-align:center;color:#666;padding:3.2rem .5rem;margin:2.4rem 0;font-size:.9rem}
+    /* Header – blauwe balk 140 px hoog totaal (80 px + 60 px) */
+    header{background:var(--blue);color:#fff;height:140px;display:flex;align-items:center}
+    .container{max-width:1200px;margin:0 auto;width:100%;padding:0 1rem}
+    h1{font-size:32px;font-weight:700;margin:0}
+    .sub{font-size:18px;margin:.3rem 0 0;color:#e2e8f0}
 
-    footer{text-align:center;font-size:.85rem;color:#666;margin:3.7rem 0 1.3rem}
+    /* Advertenties – 35 px marge t.o.v. header */
+    main{margin-top:35px}
+    .ad{min-height:90px;margin:35px 0;border:1px solid #E5E7EB;border-radius:var(--radius);
+        display:flex;align-items:center;justify-content:center;background:#fff;font-size:14px;color:var(--gray)}
 
-    /*––––  Converter styling ––––*/
-    .conv-card{display:flex;flex-direction:column;gap:2.4rem}
+    /* Hoofdkaart (calculator + populaire grid) */
+    .main-card{background:var(--gray-light);border:1px solid #E5E7EB;
+               border-radius:var(--radius);box-shadow:var(--shadow);
+               padding:2.4rem 1.8rem;margin:0 auto}
 
+    /* Converter-stijlen */
     .conv-title{font-weight:600;font-size:1.1rem;margin-bottom:.8rem;display:block}
-
-    .conv-card select,
-    .conv-card input,
-    .conv-card output{
-      width:100%;padding:1.25rem;font-size:1.5rem;border:1px solid #ccc;
-      border-radius:var(--radius);background:#fff;box-sizing:border-box
-    }
-
-    .conv-unit-row{display:flex;gap:2rem;flex-wrap:wrap}
+    select,input,output{width:100%;height:44px;border:1px solid #D1D5DB;border-radius:8px;
+      font-size:16px;padding:0 12px;box-sizing:border-box;color:var(--black)}
+    select:focus,input:focus{outline:2px solid var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.3)}
+    .conv-unit-row{display:flex;gap:24px;flex-wrap:wrap}
     .conv-unit-row div{flex:1;min-width:170px}
+    .conv-io{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:24px}
+    .input-wrap{display:flex;flex-direction:column;gap:6px;min-width:200px}
+    .input-wrap output{background:#fff;display:flex;align-items:center;justify-content:center;
+                       font-size:24px;font-weight:700;color:var(--blue)}
+    .unit{font-size:14px;color:var(--gray)}
+    .equals{font-size:24px;font-weight:700;color:var(--blue)}
 
-    .conv-io{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
-    .conv-io div{display:flex;align-items:center;gap:.8rem}
-    .conv-io input{min-width:170px}
-    .conv-io output{min-width:170px;text-align:center;font-weight:600}
-    .conv-io .equals{font-size:2.2rem;font-weight:700}
+    /* Populaire kaarten */
+    .grid{display:grid;gap:16px;margin-top:48px}
+    @media(min-width:600px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:900px){.grid{grid-template-columns:repeat(4,1fr)}}
+    .card{background:#fff;border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow);
+          transition:transform .2s}
+    .card:hover{transform:translateY(-4px)}
+    .card h4{margin:0 0 6px;font-size:18px}
+    .card p{margin:0;font-size:14px;color:var(--gray)}
 
-    .unit{font-size:1.05rem;color:#555}
-
+    /* Responsief tweaks */
     @media(max-width:540px){
-      h1{font-size:1.75rem}
-      .conv-unit-row{gap:1rem}
-      .conv-io{gap:1rem}
+      .conv-unit-row{gap:16px}
       .conv-io .equals{display:none}
     }
   </style>
 </head>
 
 <body>
+
   <header>
-    <h1>{title}</h1>
-    <p style="margin:0 .7rem 0">{desc}</p>
+    <div class="container">
+      <div>
+        <h1>{title}</h1>
+        <p class="sub">{desc}</p>
+      </div>
+    </div>
   </header>
 
-  <main class="wrap">
-    <div class="ad">[ advertentie-ruimte 728×90 / automatisch ]</div>
+  <main class="container">
+    <div class="ad">Advertentie-blok (728×90 / 300×250)</div>
 
-    <section class="panel">
+    <div class="main-card">
       <Converter client:load />
-    </section>
 
-    <h2>Populaire omzettingen</h2>
-    <ul style="margin:0;padding-left:1.2rem">
-      <li><a href="/km-naar-mm/">Kilometer ➜ millimeter</a></li>
-      <li><a href="/mm-naar-cm/">Millimeter ➜ centimeter</a></li>
-      <li><a href="/c-naar-f/">°C ➜ °F</a></li>
-    </ul>
+      <section>
+        <h2 style="margin:48px 0 16px;font-size:24px">Populaire conversies</h2>
+        <div class="grid">
+          <a class="card" href="/km-naar-mm/"><h4>Kilometer → millimeter</h4><p>10 km = 10 000 000 mm</p></a>
+          <a class="card" href="/mm-naar-cm/"><h4>Millimeter → centimeter</h4><p>10 mm = 1 cm</p></a>
+          <a class="card" href="/c-naar-f/"><h4>°C → °F</h4><p>0 °C = 32 °F</p></a>
+          <a class="card" href="/kg-naar-g/"><h4>Kilogram → gram</h4><p>1 kg = 1000 g</p></a>
+        </div>
+      </section>
+    </div>
 
-    <div class="ad">[ advertentie-ruimte 300×250 ]</div>
+    <div class="ad">Advertentie-blok (728×90 / 300×250)</div>
   </main>
-
-  <footer>© {new Date().getFullYear()} van-naar.nl — Alle rechten voorbehouden</footer>
 </body>
 </html>
