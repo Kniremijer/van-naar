@@ -1,0 +1,114 @@
+---
+const { title, desc } = Astro.props;
+---
+
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content={desc} />
+    <meta name="google-adsense-account" content="ca-pub-3112191190707735">
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    
+    <style>
+      :root {
+        --blue: #2563EB;
+        --blue-dk: #1E3A8A;
+        --gray-light: #F3F4F6;
+        --gray: #6B7280;
+        --black: #111827;
+        --radius: 16px;
+        --shadow: 0 8px 18px rgba(0,0,0,.06);
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: #fff;
+        color: var(--black);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 1rem;
+        margin: 0 auto;
+        box-sizing: border-box;
+      }
+
+
+      header {
+        background: var(--blue);
+        color: #fff;
+        height: 140px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      header h1 {
+        font-size: 32px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      header .sub {
+        font-size: 18px;
+        margin: .3rem 0 0;
+        color: #e2e8f0;
+      }
+
+      footer {
+        background-color: #111827;
+        color: white;
+        padding: 2rem 1rem;
+        width: 100%;
+      }
+
+      footer .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      footer .footer-container .brand {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      footer .footer-container .copyright {
+        font-size: 0.875rem;
+        color: #9CA3AF;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <div>
+          <h1>{title}</h1>
+          <p class="sub">{desc}</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <slot />
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <div class="brand">van-naar.nl</div>
+        <div class="copyright">© {new Date().getFullYear()} van-naar.nl. Alle rechten voorbehouden.</div>
+      </div>
+    </footer>
+  </body>
+</html>

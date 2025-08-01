@@ -1,44 +1,19 @@
 ---
+import SiteLayout from '../layouts/SiteLayout.astro';
 import Converter from '../components/Converter.tsx';
+
 const title = 'Eenheden omrekenen – van-naar.nl';
 const desc  = 'Kies een categorie, selecteer eenheden en reken direct waarden om.';
 ---
 
-<html lang="nl">
-<head>
-  <meta name="google-adsense-account" content="ca-pub-3112191190707735">
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{title}</title>
-  <meta name="description" content={desc} />
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --blue:#2563EB;--blue-dk:#1E3A8A;
-      --gray-light:#F3F4F6;--gray:#6B7280;--black:#111827;
-      --radius:16px;--shadow:0 8px 18px rgba(0,0,0,.06)
-    }
-    body{margin:0;font-family:Inter,sans-serif;color:var(--black);background:#fff}
-
-    /* Header – blauwe balk 140 px hoog totaal (80 px + 60 px) */
-    header{background:var(--blue);color:#fff;height:140px;display:flex;align-items:center}
-    .container{max-width:1200px;margin:0 auto;width:100%;padding:0 1rem}
-    h1{font-size:32px;font-weight:700;margin:0}
-    .sub{font-size:18px;margin:.3rem 0 0;color:#e2e8f0}
-
-    /* Advertenties – 35 px marge t.o.v. header */
+<SiteLayout {title} {desc}>
+  <style is:global>
     main{margin-top:35px}
     .ad{min-height:90px;margin:35px 0;border:1px solid #E5E7EB;border-radius:var(--radius);
         display:flex;align-items:center;justify-content:center;background:#fff;font-size:14px;color:var(--gray)}
-
-    /* Hoofdkaart (calculator + populaire grid) */
     .main-card{background:var(--gray-light);border:1px solid #E5E7EB;
                border-radius:var(--radius);box-shadow:var(--shadow);
                padding:2.4rem 1.8rem;margin:0 auto}
-
-    /* Converter-stijlen */
     .conv-title{font-weight:600;font-size:1.1rem;margin-bottom:.8rem;display:block}
     select,input,output{width:100%;height:44px;border:1px solid #D1D5DB;border-radius:8px;
       font-size:16px;padding:0 12px;box-sizing:border-box;color:var(--black)}
@@ -51,8 +26,6 @@ const desc  = 'Kies een categorie, selecteer eenheden en reken direct waarden om
                        font-size:24px;font-weight:700;color:var(--blue)}
     .unit{font-size:14px;color:var(--gray)}
     .equals{font-size:24px;font-weight:700;color:var(--blue)}
-
-    /* Populaire kaarten */
     .grid{display:grid;gap:16px;margin-top:48px}
     @media(min-width:600px){.grid{grid-template-columns:repeat(2,1fr)}}
     @media(min-width:900px){.grid{grid-template-columns:repeat(4,1fr)}}
@@ -61,25 +34,11 @@ const desc  = 'Kies een categorie, selecteer eenheden en reken direct waarden om
     .card:hover{transform:translateY(-4px)}
     .card h4{margin:0 0 6px;font-size:18px}
     .card p{margin:0;font-size:14px;color:var(--gray)}
-
-    /* Responsief tweaks */
     @media(max-width:540px){
       .conv-unit-row{gap:16px}
       .conv-io .equals{display:none}
     }
   </style>
-</head>
-
-<body>
-
-  <header>
-    <div class="container">
-      <div>
-        <h1>{title}</h1>
-        <p class="sub">{desc}</p>
-      </div>
-    </div>
-  </header>
 
   <main class="container">
     <div class="ad">Advertentie-blok (728×90 / 300×250)</div>
@@ -90,15 +49,14 @@ const desc  = 'Kies een categorie, selecteer eenheden en reken direct waarden om
       <section>
         <h2 style="margin:48px 0 16px;font-size:24px">Populaire conversies</h2>
         <div class="grid">
-          <a class="card" href="/km-naar-mm/"><h4>Kilometer → millimeter</h4><p>10 km = 10 000 000 mm</p></a>
-          <a class="card" href="/mm-naar-cm/"><h4>Millimeter → centimeter</h4><p>10 mm = 1 cm</p></a>
-          <a class="card" href="/c-naar-f/"><h4>°C → °F</h4><p>0 °C = 32 °F</p></a>
-          <a class="card" href="/kg-naar-g/"><h4>Kilogram → gram</h4><p>1 kg = 1000 g</p></a>
+          <a class="card" href="/km-naar-mm/"><h4>Kilometer → Millimeter</h4><p>10 km = 10 000 000 mm</p></a>
+          <a class="card" href="/mm-naar-cm/"><h4>Millimeter → Centimeter</h4><p>10 mm = 1 cm</p></a>
+          <a class="card" href="/c-naar-f/"><h4>Celsius → Fahrenheit</h4><p>1 °C = 33,8 °F</p></a>
+          <a class="card" href="/kg-naar-g/"><h4>Kilogram → Gram</h4><p>1 kg = 1000 g</p></a>
         </div>
       </section>
     </div>
 
     <div class="ad">Advertentie-blok (728×90 / 300×250)</div>
   </main>
-</body>
-</html>
+</SiteLayout>
