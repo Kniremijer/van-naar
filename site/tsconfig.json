@@ -1,5 +1,20 @@
 {
+  // behoud Astro’s strikte basis-instellingen
   "extends": "astro/tsconfigs/strict",
+
+  /* ------------------------------------------------------------
+   * Compiler-opties die nodig zijn voor Preact-JSX en strikte types
+   * ------------------------------------------------------------ */
+  "compilerOptions": {
+    "jsx": "react-jsx",          // moderne JSX-transform
+    "jsxImportSource": "preact", // vertel TS dat <jsx> van Preact komt
+    "strict": true,              // houd strict mode aan
+
+    /* laad de type-definities van Astro én Preact */
+    "types": ["astro/astro-jsx", "preact", "./src/types/global.d.ts"]
+  },
+
+  /* bestaande include / exclude kun je laten staan */
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"]
 }

@@ -1,27 +1,24 @@
 ---
-import Converter from '../components/Converter.astro';
-const title = 'Eenheden omrekenen — van-naar.nl';
-const description = 'Reken eenvoudig waarden om, bijvoorbeeld van kilometer naar millimeter of van °C naar °F.';
+import Converter from '../components/Converter.tsx';
+const title = 'Eenheden omrekenen – van-naar.nl';
+const desc  = 'Kies een categorie, selecteer eenheden en reken direct waarden om.';
 ---
+
 <html lang="nl">
   <head>
     <meta charset="utf-8" />
     <title>{title}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={desc} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body>
+  <body style="font-family:sans-serif;max-width:600px;margin:2rem auto">
     <h1>{title}</h1>
-    <p>{description}</p>
+    <p>{desc}</p>
 
-    <Converter category="lengte" />
+    <Converter client:load />
 
-    <section>
-      <h2>Veelgebruikte omzettingen</h2>
-      <ul>
-        <li><a href="/km-naar-mm/">km → mm</a></li>
-        <li><a href="/mm-naar-cm/">mm → cm</a></li>
-        <li><a href="/kg-naar-g/">kg → g</a></li>
-      </ul>
-    </section>
+    <p style="margin-top:1rem">
+      Deze homepage werkt; SEO-subpagina’s bouwen we in de volgende stap.
+    </p>
   </body>
 </html>

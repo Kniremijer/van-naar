@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/preact": "4.1.0",
     "astro": "^5.12.7",
     "convert-units": "^2.3.4"
   }
