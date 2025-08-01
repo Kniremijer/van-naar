@@ -1,0 +1,60 @@
+---
+// src/components/Converter.astro
+import convert from 'convert-units';
+import { units, Category } from '../data/units.ts';
+
+interface Props {
+  category?: Category;
+}
+const { category = 'lengte' } = Astro.props;
+const unitList = units[category];
+---
+
+<style>
+  .converter { display:flex; gap:0.5rem; flex-wrap:wrap; }
+  .converter select,
+  .converter input,
+  .converter output { padding:0.4rem; font-size:1rem; }
+</style>
+
+<div class="converter" id="converter" data-category={category}>
+  <input id="value" type="number" value="1" step="any" />
+  <select id="from">
+    {unitList.map(u => <option value={u}>{u}</option>)}
+  </select>
+  <span>=</span>
+  <output id="result">—</output>
+  <select id="to">
+    {unitList.map(u => <option value={u}>{u}</option>)}
+  </select>
+</div>
+
+<!-- Klein beetje client-JS zonder framework -->
+<script is:inline>
+  const root = document.getElementById('converter');
+  const valueEl = root.querySelector('#value');
+  const fromEl  = root.querySelector('#from');
+  const toEl    = root.querySelector('#to');
+  const outEl   = root.querySelector('#result');
+
+  function recalc() {
+    const val   = parseFloat(valueEl.value);
+    const from  = fromEl.value;
+    const to    = toEl.value;
+    if (isNaN(val)) { outEl.textContent = '—'; return; }
+    try {
+      const res = window.convert(val).from(from).to(to);
+      outEl.textContent = res.toString();
+    } catch {
+      outEl.textContent = '×';
+    }
+  }
+
+  // convert-units in global scope injecteren
+  import('https://cdn.jsdelivr.net/npm/convert-units@4.0.2/dist/index.js').then(mod => {
+    window.convert = mod.default;
+    recalc();
+  });
+
+  [valueEl, fromEl, toEl].forEach(el => el.addEventListener('input', recalc));
+</script>

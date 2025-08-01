@@ -1,16 +1,27 @@
 ---
-
+import Converter from '../components/Converter.astro';
+const title = 'Eenheden omrekenen — van-naar.nl';
+const description = 'Reken eenvoudig waarden om, bijvoorbeeld van kilometer naar millimeter of van °C naar °F.';
 ---
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <h1>{title}</h1>
+    <p>{description}</p>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+    <Converter category="lengte" />
+
+    <section>
+      <h2>Veelgebruikte omzettingen</h2>
+      <ul>
+        <li><a href="/km-naar-mm/">km → mm</a></li>
+        <li><a href="/mm-naar-cm/">mm → cm</a></li>
+        <li><a href="/kg-naar-g/">kg → g</a></li>
+      </ul>
+    </section>
+  </body>
 </html>
