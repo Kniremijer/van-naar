@@ -19,11 +19,12 @@ export async function getStaticPaths() {
 }
 
 const { from, to } = Astro.params;
-const title = `${from} naar ${to} omrekenen – van-naar.nl`;
+const title = `Van ${from} naar ${to} omrekenen | van-naar.nl`;
 const desc  = `Reken ${from} om naar ${to} snel en eenvoudig.`;
 ---
 
 <SiteLayout {title} {desc}>
+  <main class="container">
     <div class="ad">Advertentie-blok (728×90 / 300×250)</div>
 
     <h1 style="margin:32px 0 24px">{from} naar {to} omrekenen</h1>

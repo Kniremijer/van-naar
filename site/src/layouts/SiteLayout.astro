@@ -5,7 +5,7 @@ import '../styles/global.css';
 <html lang="nl">
   <head>
     <meta charset="utf-8" />
-    <title><slot name="title" /></title>
+    <title>{Astro.props.title}</title>
     <meta name="description" content={Astro.props.desc || ''} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
