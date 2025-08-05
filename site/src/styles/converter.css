@@ -1,0 +1,146 @@
+:root {
+  --blue: #2563EB;
+  --blue-dk: #1E3A8A;
+  --gray-light: #F3F4F6;
+  --gray: #6B7280;
+  --black: #111827;
+  --radius: 16px;
+  --shadow: 0 8px 18px rgba(0, 0, 0, .06);
+}
+
+/* ── Rekenmodule-kaart ─────────────────────── */
+.calc-card {
+  background: var(--gray-light);
+  border: 1px solid #E5E7EB;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2.4rem 1.8rem;
+  margin: 0 auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Rekenmodule structuur ─────────────────── */
+.grp,
+.units-row > div {
+  margin-bottom: 1.8rem;
+}
+
+.grp h3,
+.units-row h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+select,
+input,
+output {
+  width: 100%;
+  height: 52px;
+  font-size: 16px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid #D1D5DB;
+  box-sizing: border-box;
+  color: var(--black);
+}
+
+select:focus,
+input:focus {
+  outline: 2px solid var(--blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
+.units-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.units-row > div {
+  flex: 1;
+  min-width: 170px;
+}
+
+.io-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.input-wrap output {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.unit {
+  font-size: 14px;
+  color: var(--gray);
+  margin-left: 4px;
+}
+
+.equals {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--blue);
+  align-self: center;
+}
+
+/* ── Populaire conversies ───────────────────── */
+.grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 48px;
+}
+@media(min-width:600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media(min-width:900px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  box-shadow: var(--shadow);
+  transition: transform .2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+.card h4 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+.card p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--gray);
+}
+
+/* ── Mobile fix tegen horizontaal scroll ────── */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}

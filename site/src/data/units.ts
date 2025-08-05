@@ -1,12 +1,13 @@
 export const units = {
-  lengte: ['mm', 'cm', 'm', 'km', 'in', 'ft', 'yd', 'mi'],
-  gewicht: ['mg', 'g', 'kg', 't', 'oz', 'lb'],
-  temperatuur: ['C', 'F', 'K'],
-  volume: ['ml', 'l', 'm3', 'floz', 'cup', 'pt', 'qt', 'gal', 'tsp', 'tbsp'],
+  lengte: ['mm', 'cm', 'dm', 'm', 'km'],
+  temperatuur: ['c', 'f', 'k'],
+  gewicht: ['mg', 'g', 'kg', 't'],
+  volume: ['ml', 'cl', 'dl', 'l', 'm3'],
   tijd: ['ms', 's', 'min', 'h', 'd'],
-  energie: ['J', 'kJ', 'cal', 'kcal', 'Wh', 'kWh'],
-  snelheid: ['m/s', 'km/h', 'mph', 'ft/s', 'knot'],
-  oppervlakte: ['mm2', 'cm2', 'm2', 'km2', 'in2', 'ft2', 'yd2', 'acre', 'ha']
+  snelheid: ['mps', 'kmh', 'mph', 'kn'],
+  energie: ['j', 'kj', 'cal', 'kcal'],
+  druk: ['pa', 'kpa', 'bar', 'psi'],
+  opslag: ['b', 'kb', 'mb', 'gb', 'tb'],
 } as const;
 
 export type Category = keyof typeof units;
